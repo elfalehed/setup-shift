@@ -68,7 +68,7 @@ def webdev():
         setup(option)   
 
 def python():
-    print(Fore.CYAN + ' [0] Python 3.9')
+    print(Fore.CYAN + ' [0] Update Python')
     print(Fore.CYAN + ' [1] Python GUI frameworks')
     print(Fore.CYAN + ' [2] Python Web frameworks')
     print(Fore.CYAN + ' [3] return to menu')
