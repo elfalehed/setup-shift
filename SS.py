@@ -24,6 +24,7 @@ def chrome():
         setupinto()
         option = int(input(Fore.GREEN + ":$ "))
         setup(option)
+
 def ides():
     print(Fore.CYAN + ' [1] VScode')
     print(Fore.CYAN + ' [2] SublimeText')
