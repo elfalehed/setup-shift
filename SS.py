@@ -1,75 +1,37 @@
 #! /usr/bin/python3 
-import colorama
-from colorama import Fore
 import os
+import yaml
 
-art = """
-       .__     _____         .__           .__         .___                   
-  ____  |  |  _/ ____\_____   |  |    ____  |  |__    __| _/  ____  ___  __  
-_/ __ \ |  |  \   __\ \__  \  |  |  _/ __ \ |  |  \  / __ | _/ __ \ \  \/ / 
-\  ___/ |  |__ |  |    / __ \_|  |__\  ___/ |   Y  \/ /_/ | \  ___/  \   / 
- \___  >|____/ |__|   (____  /|____/ \___  >|___|  /\____ |  \___  >  \_/  
-     \/                    \/            \/      \/      \/      \/          """
-
-
-def chrome():
-    print(Fore.CYAN + ' [1] GitHunt')
-    print()
+def installer(packages):
+    i = 1
+    for p in packages:
+        print('[',i,']',p[0],'\n')
+        i = i+1
     option = int(input(":$ "))
-    if(option == 1):
-        os.system("google-chrome https://chrome.google.com/webstore/detail/githunt/khpcnaokfebphakjgdgpinmglconplhp?hl=en")
+    # print(len(packages))
+    if (option in range(0,len(packages)+1) ):
+        os.system(packages[option-1][1])
 
-def ides():
-    print(Fore.CYAN + ' [1] VScode')
-    print(Fore.CYAN + ' [2] SublimeText')
-    print(Fore.CYAN + ' [3] Atom')
-    print()
-    option = int(input(Fore.GREEN + ':$ '))
-    if(option == 1):
-        os.system("google-chrome https://code.visualstudio.com/docs/setup/linux")
-    elif(option == 2):
-        os.system("sudo apt-get install sublime-text")
-    elif(option == 3):
-        os.system("sudo apt-get install atom")
-
-
-def webdev():
-    print(Fore.CYAN + ' [0] npm')
-    print(Fore.CYAN + ' [1] nodejs')
-    print(Fore.CYAN + ' [2] materialui')
-    print(Fore.CYAN + ' [3] tailwindcss')
-    print() 
-    option = int(input(Fore.GREEN + ':$ ')) 
-    if(option == 0): 
-        os.system("sudo apt install npm")
-    elif(option == 1):
-        os.system("sudo apt install npm nodejs")
-    elif(option == 2):
-        os.system("npm install @material-ui/core")
-    elif(option == 3):
-        os.system("npm install -D tailwindcss@latest postcss@latest autoprefixer@latest")
-
-def setupinto():
-    print(Fore.YELLOW + ' [1] Web development packages and dependencies.')
-    print(Fore.YELLOW + ' [2] Text Editors and IDEs') 
-    print(Fore.YELLOW + ' [3] Chrome Extensions')
-    
-def setup(option):
-    if(option == 1):
-        webdev()
-    elif(option == 2): 
-        ides()
-    elif(option ==  3):
-        chrome()
+def add():
+    print("What's the name of the automated command: ")
+    pack_name = str(input(':$ '))
+    print("What's the command to run the command: ")
+    pack_com = str(input(':$ '))
+    pack = [pack_name,pack_com]
+    return pack
 
 
 def main():
-    print(art)
-    print(Fore.RED +' [!] You can change the download commands easily from the source-code.')
-    print()
-    setupinto()
-    print()
-    option = int(input(Fore.GREEN + ":$ "))
-    setup(option)
-    
+    print("[1] Install packages \n[2] Add a package to the config\n")
+    option = int(input(":$ "))
+    with open('config.yaml','r') as file:
+        config = yaml.safe_load(file)
+        packages = config['packages']
+    if (option == 1):
+            installer(packages)
+    elif (option == 2):
+        with open('config.yaml','w') as file:
+            config['packages'].append(add())
+            yaml.dump(config,file)
+            
 if __name__=='__main__':main()
