@@ -1,7 +1,14 @@
 #! /usr/bin/python3 
+
 import os
 import yaml
-
+from colorama import Fore
+art = """ 
+ ___  ____  ____  __  __  ____    ___  _   _  ____  ____  ____ 
+/ __)( ___)(_  _)(  )(  )(  _ \  / __)( )_( )(_  _)( ___)(_  _)
+\__ \ )__)   )(   )(__)(  )___/  \__ \ ) _ (  _)(_  )__)   )(  
+(___/(____) (__) (______)(__)    (___/(_) (_)(____)(__)   (__) 
+"""
 def installer(packages):
     i = 1
     for p in packages:
@@ -13,16 +20,18 @@ def installer(packages):
         os.system(packages[option-1][1])
 
 def add():
-    print("What's the name of the automated command: ")
+    print(Fore.YELLOW + "What's the name of the automated command: ")
     pack_name = str(input(':$ '))
-    print("What's the command to run the command: ")
+    print(Fore.YELLOW + "What's the command to run the command: ")
     pack_com = str(input(':$ '))
     pack = [pack_name,pack_com]
     return pack
 
 
 def main():
-    print("[1] Install packages \n[2] Add a package to the config\n")
+    print(art)
+    print(Fore.CYAN + "[!] The idea by: @elfalehdev and shoutout to @cryptolake for the update.\n")
+    print(Fore.RED + "[1] Install packages \n[2] Add a package to the config\n") 
     option = int(input(":$ "))
     with open('config.yaml','r') as file:
         config = yaml.safe_load(file)
