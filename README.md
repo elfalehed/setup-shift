@@ -13,6 +13,4 @@ EASY JUST RUN:
 1. ``` python3 SS.py```
 
 ## :wrench: Editing The Script
-You can easily edit the source-code to be compatible with your current setup. All you need to do is to add:
-```os.system("COMMAND_HERE")``` 
-
+After running the script you'll have the options either to add more packages or to install the ones on the config file. 
