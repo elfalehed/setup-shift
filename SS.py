@@ -8,14 +8,26 @@ art = """
 \__ \ )__)   )(   )(__)(  )___/  \__ \ ) _ (  _)(_  )__)   )(  
 (___/(____) (__) (______)(__)    (___/(_) (_)(____)(__)   (__) 
 """
+
+def valid_input():
+    while True:
+        try:
+            option = int(input(":$ "))
+            break
+        except ValueError as e:
+            print('Please type a valid option.')
+    return option
+
+
 def installer(config):
     packages = config['packages']
     i = 1
     for p in packages:
         print('[',i,']',p[0],'\n')
         i = i+1
-    option = int(input(":$ "))
-    # print(len(packages))
+
+
+    option = valid_input()
     if (option in range(1,len(packages)+1) ):
         os.system(packages[option-1][1])
     else:
@@ -39,7 +51,8 @@ def remove(config):
         i = i+1
 
     print(Fore.YELLOW + "What's the number of the command you want to delete: \n")
-    option = int(input(':$ '))
+    option = valid_input()
+
 
     print(Fore.YELLOW + "Are you sure? y/n")
     confirm = str(input(':$ ')).upper().replace(" ","")
@@ -61,7 +74,7 @@ def main():
         print(art)
         print(Fore.CYAN + "[!] The idea by: @elfalehdev and shoutout to @cryptolake for the update.\n")
         print(Fore.RED + "[1] Install packages \n[2] Add a package to the config\n[3] Remove a package from the config\n[4] Exit")
-        option = int(input(":$ "))
+        option = valid_input()
 
         if (option == 1):
             installer(config)
