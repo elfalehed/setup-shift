@@ -18,15 +18,12 @@ def valid_input():
             print('Please type a valid option.')
     return option
 
-
 def installer(config):
     packages = config['packages']
     i = 1
     for p in packages:
         print('[',i,']',p[0],'\n')
         i = i+1
-
-
     option = valid_input()
     if (option in range(1,len(packages)+1) ):
         os.system(packages[option-1][1])
@@ -71,6 +68,7 @@ def main():
     while True:
         with open('config.yaml','w') as file:
             yaml.dump(config,file)
+
         print(art)
         print(Fore.CYAN + "[!] The idea by: @elfalehdev and shoutout to @cryptolake for the update.\n")
         print(Fore.RED + "[1] Install packages \n[2] Add a package to the config\n[3] Remove a package from the config\n[4] Exit")
