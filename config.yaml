@@ -1,9 +1,0 @@
-packages:
-- - npm
-  - sudo apt install npm
-- - VScode
-  - google-chrome https://code.visualstudio.com/docs/setup/linux
-- - sublime
-  - sudo apt-get install sublime-text
-- - tailwindcss
-  - npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
